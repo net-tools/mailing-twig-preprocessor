@@ -1,7 +1,7 @@
 {
     "name" : "net-tools/mailing-twig-preprocessor",
 		
-    "description" : "Preprocessor strategy with Twig support for MassMailing\Engine",
+    "description" : "Preprocessor strategy with Twig support for MassMailing\\Engine",
 	
 	"type": "library",
 	
