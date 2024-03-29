@@ -1,12 +1,12 @@
 <?php 
 
-namespace Nettools\Mailing\MassMailing\Tests;
+namespace Nettools\MassMailing\MailingEngine\Tests;
 
 
 
 use \Nettools\Mailing\Mailer;
-use \Nettools\Mailing\MassMailing\Twig;
-use \Nettools\Mailing\MassMailing\Engine;
+use \Nettools\MassMailing\MailingEngine\Twig;
+use \Nettools\MassMailing\MailingEngine\Engine;
 
 
 

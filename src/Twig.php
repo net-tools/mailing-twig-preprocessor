@@ -1,11 +1,9 @@
 <?php
 
 // namespace
-namespace Nettools\Mailing\MassMailing;
+namespace Nettools\MassMailing\MailingEngine;
 
 
-// clauses use
-use \Nettools\Mailing\Mailer;
 
 
 
@@ -49,7 +47,7 @@ class Twig implements PreProcessor
 		}
 		catch(\Exception $e)
 		{
-			throw new \Nettools\Mailing\MassMailing\Exception('Twig loading issue : ' . $e->getMessage());
+			throw new \Nettools\MassMailing\MailingEngine\Exception('Twig loading issue : ' . $e->getMessage());
 		}
 	}
 	
@@ -80,7 +78,7 @@ class Twig implements PreProcessor
 	 * @param string $txt The text content to process
 	 * @param mixed $data Any data required to update the text content
 	 * @return string
-	 * @throws \Nettools\Mailing\MassMailing\Exception
+	 * @throws \Nettools\MassMailing\MailingEngine\Exception
 	 */
 	public function process($txt, $data = NULL)
 	{
@@ -90,7 +88,7 @@ class Twig implements PreProcessor
 		}
 		catch(\Throwable $e)
 		{
-			throw new \Nettools\Mailing\MassMailing\Exception('Twig rendering issue : ' . $e->getMessage());
+			throw new \Nettools\MassMailing\MailingEngine\Exception('Twig rendering issue : ' . $e->getMessage());
 		}
 	}
 }
