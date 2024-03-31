@@ -7,7 +7,7 @@
 	
 	"require" : {
 		"php": ">= 8.2.0",
-		"net-tools/mailing" : "^1.12.0",
+		"net-tools/mass-mailing" : "^1.0.1",
 		"twig/twig": "^3.0.0"
     },
 	
@@ -17,7 +17,7 @@
 	
 	"autoload": {
 		"psr-4": {
-			"Nettools\\MassMailing\\MailingEngine\\": "src/"
+			"Nettools\\MassMailing\\TemplateEngine\\": "src/"
 		}
     },
 	 

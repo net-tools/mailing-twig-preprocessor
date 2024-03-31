@@ -1,8 +1,7 @@
 <?php
 
 // namespace
-namespace Nettools\MassMailing\MailingEngine;
-
+namespace Nettools\MassMailing\TemplateEngine;
 
 
 
@@ -15,6 +14,7 @@ class Twig implements PreProcessor
 {
 	protected $twigTemplate = NULL;
 	protected $cache = NULL;
+
 	
 	
 	/**
@@ -22,6 +22,7 @@ class Twig implements PreProcessor
 	 *
 	 * @param string $template Twig template (in fact, the email string content that may have Twig/Markdown tags)
 	 * @return Twig\TemplateWrapper
+	 * @throws \Nettools\MassMailing\TemplateEngine\Exception
 	 */
 	protected function getTwigTemplate($template)
 	{
@@ -47,7 +48,7 @@ class Twig implements PreProcessor
 		}
 		catch(\Exception $e)
 		{
-			throw new \Nettools\MassMailing\MailingEngine\Exception('Twig loading issue : ' . $e->getMessage());
+			throw new \Nettools\MassMailing\TemplateEngine\Exception('Twig loading issue : ' . $e->getMessage());
 		}
 	}
 	
@@ -57,7 +58,6 @@ class Twig implements PreProcessor
 	 * Constructor
 	 *
 	 * @param string $cache If set, path to twig cache as a string
-	 * @throws \Nettools\Mailing\MailingHelpers\Exception
 	 */
 	function __construct($cache = NULL)
 	{
@@ -78,7 +78,7 @@ class Twig implements PreProcessor
 	 * @param string $txt The text content to process
 	 * @param mixed $data Any data required to update the text content
 	 * @return string
-	 * @throws \Nettools\MassMailing\MailingEngine\Exception
+	 * @throws \Nettools\MassMailing\TemplateEngine\Exception
 	 */
 	public function process($txt, $data = NULL)
 	{
@@ -88,7 +88,7 @@ class Twig implements PreProcessor
 		}
 		catch(\Throwable $e)
 		{
-			throw new \Nettools\MassMailing\MailingEngine\Exception('Twig rendering issue : ' . $e->getMessage());
+			throw new \Nettools\MassMailing\TemplateEngine\Exception('Twig rendering issue : ' . $e->getMessage());
 		}
 	}
 }
