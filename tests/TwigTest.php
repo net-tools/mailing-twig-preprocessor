@@ -1,28 +1,29 @@
 <?php 
 
-namespace Nettools\MassMailing\MailingEngine\Tests;
+namespace Nettools\MassMailing\TemplateEngine\Tests;
 
 
 
 use \Nettools\Mailing\Mailer;
-use \Nettools\MassMailing\MailingEngine\Twig;
-use \Nettools\MassMailing\MailingEngine\Engine;
+use \Nettools\MassMailing\TemplateEngine\Twig;
+use \Nettools\MassMailing\TemplateEngine\Engine;
 
 
 
 
 class TwigTest extends \PHPUnit\Framework\TestCase
 {
-	public function testMSH()
+	public function testTwigPreprocessor()
 	{
-    	$ms = new \Nettools\Mailing\MailSenders\Virtual();
-		$ml = new Mailer($ms);
-		$msh = new Engine($ml, 'msh content #{{ name }}#', 'text/plain', 'unit-test@php.com', 'test subject', ['preProcessors' => array(new Twig())]);
+		$e = (new Engine())->template()
+					->text('User name is `{{ name }}`')
+					->noAlternatePart()
+					->preProcessors([new Twig()])
+					->withData([ 'name' => 'John Doe' ]);
 
-		$msh->prepareAndSend('recipient@here.com', NULL, ['name' => 'me !']);
-		
-		$this->assertEquals(1, count($ms->getSent()));
-		$this->assertEquals(true, is_int(strpos($ms->getSent()[0], 'msh content #me !#')));
+		$mail = $e->build();
+		$this->assertEquals(true, $mail instanceof \Nettools\Mailing\MailBuilder\TextPlainContent);
+		$this->assertStringContainsString('User name is `John Doe`', $mail->getContent());
 	}
 }
 
